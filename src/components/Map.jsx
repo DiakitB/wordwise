@@ -1,22 +1,50 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
 import styles from "./Map.module.css";
-import { Marker, Popup, MapContainer, TileLayer } from "react-leaflet";
-import { useState } from "react";
+import {
+  Marker,
+  Popup,
+  MapContainer,
+  TileLayer,
+  useMap,
+  useMapEvent,
+} from "react-leaflet";
+import { useEffect, useState } from "react";
 import { useCity } from "../contexts/CityProvider";
+import { useGeolocation } from "../Hooks/UseGeoLocation";
+import Button from "./Button";
+import Spinner from "./Spinner";
 
 function Map() {
   const navigate = useNavigate();
   const [mapPosition, setMapPosition] = useState([40, 0]);
   const { cities } = useCity();
-  console.log(cities);
+  const { isLoading, getPosition, position } = useGeolocation();
+  console.log(position);
   // Using useSearchParms Hook
   // This will return an object that we can call get mothod on that
-  // const [searchParms, setSearchParams] = useSearchParams();
-  // const la = searchParms.get("lat");
-  // const ln = searchParms.get("lng");
-  // console.log(la, ln);
+  const [searchParms, setSearchParams] = useSearchParams();
+  const la = searchParms.get("lat");
+  const ln = searchParms.get("lng");
+
+  useEffect(
+    function () {
+      if (la && ln) setMapPosition([la, ln]);
+    },
+    [la, ln]
+  );
+  useEffect(
+    function () {
+      if (position) setMapPosition([position.lat, position.lng]);
+    },
+    [position]
+  );
   return (
     <div className={styles.mapContainer}>
+      {!position && (
+        <Button type="position" onClick={getPosition}>
+          {isLoading ? "Loadin..." : "Use your position"}
+        </Button>
+      )}
       <MapContainer
         center={mapPosition}
         zoom={13}
@@ -27,16 +55,44 @@ function Map() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
         />
-        {
-          <Marker position={mapPosition}>
+        {cities.map((city) => (
+          <Marker
+            position={[city.position.lat, city.position.lng]}
+            key={city.id}
+          >
             <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
+              <span>{city.emoji}</span>
+              <span>{city.cityName}</span>
             </Popup>
           </Marker>
-        }
+        ))}
+        <GetPosition position={mapPosition} />
+        <ClickMap />
       </MapContainer>
     </div>
   );
 }
 
 export default Map;
+function GetPosition({ position }) {
+  const map = useMap();
+  map.setView(position);
+  return null;
+}
+
+function ClickMap() {
+  const navigate = useNavigate();
+  useMapEvent({
+    click: (e) => {
+      console.log(e.latlng.lat, e.latlng.lng);
+      navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`);
+    },
+  });
+  return null;
+}
+// useMap and call setView()
+
+// click on map
+//useMapEvents({
+//click: e=> navigat("form")
+//})
