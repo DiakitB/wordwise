@@ -13,18 +13,20 @@ import { useCity } from "../contexts/CityProvider";
 import { useGeolocation } from "../Hooks/UseGeoLocation";
 import Button from "./Button";
 import Spinner from "./Spinner";
+import { useGetPosition } from "../Hooks/useGetPosition";
 
 function Map() {
   const navigate = useNavigate();
   const [mapPosition, setMapPosition] = useState([40, 0]);
   const { cities } = useCity();
   const { isLoading, getPosition, position } = useGeolocation();
-  console.log(position);
+
   // Using useSearchParms Hook
   // This will return an object that we can call get mothod on that
-  const [searchParms, setSearchParams] = useSearchParams();
-  const la = searchParms.get("lat");
-  const ln = searchParms.get("lng");
+  // const [searchParms, setSearchParams] = useSearchParams();
+  // const la = searchParms.get("lat");
+  // const ln = searchParms.get("lng");
+  const [la, ln] = useGetPosition();
 
   useEffect(
     function () {
@@ -84,7 +86,7 @@ function ClickMap() {
   const navigate = useNavigate();
   useMapEvent({
     click: (e) => {
-      console.log(e.latlng.lat, e.latlng.lng);
+     
       navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`);
     },
   });
