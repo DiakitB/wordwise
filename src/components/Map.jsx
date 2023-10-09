@@ -86,7 +86,6 @@ function ClickMap() {
   const navigate = useNavigate();
   useMapEvent({
     click: (e) => {
-     
       navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`);
     },
   });
@@ -98,3 +97,5 @@ function ClickMap() {
 //useMapEvents({
 //click: e=> navigat("form")
 //})
+
+// 1) get the location onclick on the map

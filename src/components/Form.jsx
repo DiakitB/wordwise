@@ -7,6 +7,8 @@ import Message from "./Message";
 import Button from "./Button";
 import BackButton from "./BackButton";
 import { useGetPosition } from "../Hooks/useGetPosition";
+import Spinner from "./Spinner";
+import ReactDatePicker from "react-datepicker";
 export function convertToEmoji(countryCode) {
   const codePoints = countryCode
     .toUpperCase()
@@ -21,27 +23,44 @@ function Form() {
   const [date, setDate] = useState(new Date());
   const [notes, setNotes] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [emoji, setEmoji] = useState("");
   // const navigate = useNavigate();
   const [la, ln] = useGetPosition();
-  console.log(la, ln);
 
   if (!la && ln) return <Message message="Click on the map silly" />;
-  useEffect(function () {
-    async function getLocation() {
-      try {
-        setIsLoading(true);
-        const res = await fetch(`${BAS_URL}?latitude=${la}&longitude=${ln}`);
-        const data = await res.json();
-        console.log(data);
-      } catch (err) {
-        console.log(err);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    getLocation();
-  }, []);
+  useEffect(
+    function () {
+      if (!la && !ln) return;
+      async function getLocation() {
+        try {
+          setIsLoading(true);
+          setError("");
+          const res = await fetch(`${BAS_URL}?latitude=${la}&longitude=${ln}`);
+          const data = await res.json();
+          console.log(data);
+          if (!data.countryCode)
+            throw new Error(
+              "Sorry, that seems not to be a city please click on a city"
+            );
 
+          if (data.countryCode) setCityName(data.city || data.locality || "");
+
+          setCountry(data.countryName);
+          setEmoji(convertToEmoji(data.countryCode));
+        } catch (err) {
+          setError(err.message);
+        } finally {
+          setIsLoading(false);
+        }
+      }
+      getLocation();
+    },
+    [la, ln]
+  );
+  if (isLoading) return <Spinner />;
+  if (error) return <Message message={error} />;
+  if (!la && !ln) return <Message message="Click on a city on the map" />;
   return (
     <form className={styles.form}>
       <div className={styles.row}>
@@ -51,7 +70,7 @@ function Form() {
           onChange={(e) => setCityName(e.target.value)}
           value={cityName}
         />
-        {/* <span className={styles.flag}>{emoji}</span> */}
+        <span className={styles.flag}>{emoji}</span>
       </div>
 
       <div className={styles.row}>
@@ -61,6 +80,10 @@ function Form() {
           onChange={(e) => setDate(e.target.value)}
           value={date}
         />
+        {/* <ReactDatePicker
+          onChange={(date) => setDate(date)}
+          selected={date}
+          dateFormat="ddd/MM/yy" */}
       </div>
 
       <div className={styles.row}>
