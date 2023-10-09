@@ -26,13 +26,13 @@ function Map() {
   // const [searchParms, setSearchParams] = useSearchParams();
   // const la = searchParms.get("lat");
   // const ln = searchParms.get("lng");
-  const [la, ln] = useGetPosition();
+  const [lat, lng] = useGetPosition();
 
   useEffect(
     function () {
-      if (la && ln) setMapPosition([la, ln]);
+      if (lat && lng) setMapPosition([lat, lng]);
     },
-    [la, ln]
+    [lat, lng]
   );
   useEffect(
     function () {

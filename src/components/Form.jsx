@@ -9,6 +9,8 @@ import BackButton from "./BackButton";
 import { useGetPosition } from "../Hooks/useGetPosition";
 import Spinner from "./Spinner";
 import ReactDatePicker from "react-datepicker";
+import { useCity } from "../contexts/CityProvider";
+import { useNavigate } from "react-router-dom";
 export function convertToEmoji(countryCode) {
   const codePoints = countryCode
     .toUpperCase()
@@ -25,18 +27,21 @@ function Form() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [emoji, setEmoji] = useState("");
-  // const navigate = useNavigate();
-  const [la, ln] = useGetPosition();
+  const navigate = useNavigate();
+  const [lat, lng] = useGetPosition();
+  const { createCity } = useCity();
 
-  if (!la && ln) return <Message message="Click on the map silly" />;
+  if (!lat && lng) return <Message message="Click on the map silly" />;
   useEffect(
     function () {
-      if (!la && !ln) return;
+      if (!lat && !lng) return;
       async function getLocation() {
         try {
           setIsLoading(true);
           setError("");
-          const res = await fetch(`${BAS_URL}?latitude=${la}&longitude=${ln}`);
+          const res = await fetch(
+            `${BAS_URL}?latitude=${lat}&longitude=${lng}`
+          );
           const data = await res.json();
           console.log(data);
           if (!data.countryCode)
@@ -56,13 +61,13 @@ function Form() {
       }
       getLocation();
     },
-    [la, ln]
+    [lat, lng]
   );
 
   ////
   if (isLoading) return <Spinner />;
   if (error) return <Message message={error} />;
-  if (!la && !ln) return <Message message="Click on a city on the map" />;
+  if (!lat && !lng) return <Message message="Click on a city on the map" />;
 
   /////
 
@@ -78,17 +83,20 @@ function Form() {
   //       "lng": -9.140900099907554
   //     },
   ////
-  function onSubmitHandler(e) {
+  async function onSubmitHandler(e) {
     e.preventDefault();
     if (!cityName) return;
     const newCity = {
       cityName,
       country,
       emoji,
+      date,
       notes,
-      position: { la, ln },
+      position: { lat, lng },
     };
-    console.log(newCity);
+
+    await createCity(newCity);
+    navigate("/app");
   }
   return (
     <form className={styles.form} onSubmit={onSubmitHandler}>
@@ -114,7 +122,7 @@ function Form() {
             id="date"
             onChange={(date) => setDate(date)}
             selected={date}
-            dateFormat="ddd/MMM/yyy"
+            dateFormat="dd/MMM/yyy"
           />
         }
       </div>

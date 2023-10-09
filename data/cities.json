@@ -35,6 +35,78 @@
         "lng": 13.376933665713324
       },
       "id": 98443197
+    },
+    {
+      "cityName": "Castello de la Plana",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2023-10-09T23:34:56.252Z",
+      "notes": "testing-12358",
+      "position": {
+        "lat": "39.99632286685119",
+        "lng": "-0.05064010620117188"
+      },
+      "id": 98443198
+    },
+    {
+      "cityName": "Castello de la Plana",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2023-10-09T23:34:56.252Z",
+      "notes": "testing-12358",
+      "position": {
+        "lat": "39.99632286685119",
+        "lng": "-0.05064010620117188"
+      },
+      "id": 98443199
+    },
+    {
+      "cityName": "Saint-Bruno-de-Montarville",
+      "country": "Canada",
+      "emoji": "🇨🇦",
+      "date": "2023-10-09T23:36:27.091Z",
+      "notes": "Vanessa",
+      "position": {
+        "lat": "45.52823824119782",
+        "lng": "-73.3382034301758"
+      },
+      "id": 98443200
+    },
+    {
+      "cityName": "McMasterville",
+      "country": "Canada",
+      "emoji": "🇨🇦",
+      "date": "2023-10-09T23:38:58.316Z",
+      "notes": "Work",
+      "position": {
+        "lat": "45.549880640496056",
+        "lng": "-73.23177337646486"
+      },
+      "id": 98443201
+    },
+    {
+      "cityName": "Timbuktu",
+      "country": "Mali",
+      "emoji": "🇲🇱",
+      "date": "2023-10-09T23:40:27.985Z",
+      "notes": "",
+      "position": {
+        "lat": "17.056784609942554",
+        "lng": "-2.1093750000000004"
+      },
+      "id": 98443202
+    },
+    {
+      "cityName": "Segou",
+      "country": "Mali",
+      "emoji": "🇲🇱",
+      "date": "2023-10-09T23:40:55.705Z",
+      "notes": "Salimata",
+      "position": {
+        "lat": "13.720708401412068",
+        "lng": "-6.635742187500001"
+      },
+      "id": 98443203
     }
   ]
 }
