@@ -107,6 +107,30 @@
         "lng": "-106.43554687500001"
       },
       "id": 98443203
+    },
+    {
+      "cityName": "Almassora",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2023-10-10T23:09:53.721Z",
+      "notes": "testing",
+      "position": {
+        "lat": "39.97606773596748",
+        "lng": "-0.11535644531250001"
+      },
+      "id": 98443204
+    },
+    {
+      "cityName": "Mont-Saint-Hilaire",
+      "country": "Canada",
+      "emoji": "🇨🇦",
+      "date": "2023-10-10T23:12:35.588Z",
+      "notes": "testing",
+      "position": {
+        "lat": "45.564785002956775",
+        "lng": "-73.20327758789064"
+      },
+      "id": 98443205
     }
   ]
 }
