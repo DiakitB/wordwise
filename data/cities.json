@@ -85,26 +85,26 @@
       "id": 98443201
     },
     {
-      "cityName": "Timbuktu",
-      "country": "Mali",
-      "emoji": "🇲🇱",
-      "date": "2023-10-09T23:40:27.985Z",
-      "notes": "",
+      "cityName": "Castello de la Plana",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2023-10-10T01:10:18.232Z",
+      "notes": "testind",
       "position": {
-        "lat": "17.056784609942554",
-        "lng": "-2.1093750000000004"
+        "lat": "40.00473881701517",
+        "lng": "-0.009956359863281252"
       },
       "id": 98443202
     },
     {
-      "cityName": "Segou",
-      "country": "Mali",
-      "emoji": "🇲🇱",
-      "date": "2023-10-09T23:40:55.705Z",
-      "notes": "Salimata",
+      "cityName": "Jemez-Zia",
+      "country": "United States of America (the)",
+      "emoji": "🇺🇸",
+      "date": "2023-10-10T01:10:47.784Z",
+      "notes": "usa",
       "position": {
-        "lat": "13.720708401412068",
-        "lng": "-6.635742187500001"
+        "lat": "35.9602229692967",
+        "lng": "-106.43554687500001"
       },
       "id": 98443203
     }

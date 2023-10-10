@@ -1,12 +1,32 @@
+import { useReducer } from "react";
 import { createContext, useContext, useEffect, useState } from "react";
 
 const CityContext = createContext();
 const URL = "http://localhost:800";
+const initialState = {
+  cities: [],
+  isLoading: false,
+  currentCity: {},
+  error: "",
+};
 
+function reducer(state, action) {
+  switch (action.type) {
+    case "loading":
+      return { ...state, isLoading: true };
+    case "cities/loaded":
+      return { ...state, cities: action.paylaod };
+    case "city/loaded":
+      return { ...state, currentCity: action.payload };
+    case "city/created":
+      return { ...state };
+  }
+}
 function CityProvider({ children }) {
   const [cities, setCities] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [currentCity, setCurrentCity] = useState({});
+  // const [state, dispatch] = useReducer(reducer, initialState);
   useEffect(function () {
     async function fetchCities() {
       try {
@@ -56,6 +76,20 @@ function CityProvider({ children }) {
       setIsLoading(false);
     }
   }
+  async function deleteCity(id) {
+    try {
+      setIsLoading(true);
+      await fetch(`${URL}/cities/${id}`, {
+        method: "DELETE",
+      });
+
+      setCities((cities) => cities.filter((city) => city.id !== id));
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setIsLoading(false);
+    }
+  }
   return (
     <CityContext.Provider
       value={{
@@ -64,6 +98,7 @@ function CityProvider({ children }) {
         currentCity,
         getCity,
         createCity,
+        deleteCity,
       }}
     >
       {children}
