@@ -59,6 +59,42 @@
         "lng": "-40.78125000000001"
       },
       "id": 98443204
+    },
+    {
+      "cityName": "Spoleto",
+      "country": "Italy",
+      "emoji": "🇮🇹",
+      "date": "2023-10-11T01:13:14.011Z",
+      "notes": "hello italy",
+      "position": {
+        "lat": "42.71473218539458",
+        "lng": "12.7001953125"
+      },
+      "id": 98443205
+    },
+    {
+      "cityName": "Porreres",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2023-10-11T01:28:37.412Z",
+      "notes": "",
+      "position": {
+        "lat": "39.51781418588606",
+        "lng": "3.0377197265625004"
+      },
+      "id": 98443206
+    },
+    {
+      "cityName": "Uygat",
+      "country": "Russian Federation (the)",
+      "emoji": "🇷🇺",
+      "date": "2023-10-11T01:30:01.091Z",
+      "notes": "",
+      "position": {
+        "lat": "53.72271667491848",
+        "lng": "100.67871093750001"
+      },
+      "id": 98443209
     }
   ]
 }

@@ -23,12 +23,14 @@ function reducer(state, action) {
         ...state,
         isLoading: false,
         cities: [...state.cities, action.paylaod],
+        currentCity: action.paylaod,
       };
     case "city/deleted":
       return {
         ...state,
         isLoading: false,
         cities: state.cities.filter((city) => city.id !== action.paylaod),
+        currentCity: {},
       };
     case "rejected":
       return { ...state, isLoading: false, error: action.paylaod };
@@ -60,6 +62,7 @@ function CityProvider({ children }) {
     fetchCities();
   }, []);
   async function getCity(id) {
+    if (Number(id) === currentCity.id) return;
     dispatch({ type: "loading" });
     try {
       const res = await fetch(`${URL}/cities/${id}`);
