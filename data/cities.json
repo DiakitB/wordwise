@@ -37,42 +37,6 @@
       "id": 98443197
     },
     {
-      "cityName": "Castello de la Plana",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2023-10-09T23:34:56.252Z",
-      "notes": "testing-12358",
-      "position": {
-        "lat": "39.99632286685119",
-        "lng": "-0.05064010620117188"
-      },
-      "id": 98443198
-    },
-    {
-      "cityName": "Castello de la Plana",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2023-10-09T23:34:56.252Z",
-      "notes": "testing-12358",
-      "position": {
-        "lat": "39.99632286685119",
-        "lng": "-0.05064010620117188"
-      },
-      "id": 98443199
-    },
-    {
-      "cityName": "Saint-Bruno-de-Montarville",
-      "country": "Canada",
-      "emoji": "🇨🇦",
-      "date": "2023-10-09T23:36:27.091Z",
-      "notes": "Vanessa",
-      "position": {
-        "lat": "45.52823824119782",
-        "lng": "-73.3382034301758"
-      },
-      "id": 98443200
-    },
-    {
       "cityName": "McMasterville",
       "country": "Canada",
       "emoji": "🇨🇦",
@@ -85,52 +49,16 @@
       "id": 98443201
     },
     {
-      "cityName": "Castello de la Plana",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2023-10-10T01:10:18.232Z",
-      "notes": "testind",
+      "cityName": "Daneborg",
+      "country": "Greenland",
+      "emoji": "🇬🇱",
+      "date": "2023-10-11T01:07:02.678Z",
+      "notes": "tesitn",
       "position": {
-        "lat": "40.00473881701517",
-        "lng": "-0.009956359863281252"
-      },
-      "id": 98443202
-    },
-    {
-      "cityName": "Jemez-Zia",
-      "country": "United States of America (the)",
-      "emoji": "🇺🇸",
-      "date": "2023-10-10T01:10:47.784Z",
-      "notes": "usa",
-      "position": {
-        "lat": "35.9602229692967",
-        "lng": "-106.43554687500001"
-      },
-      "id": 98443203
-    },
-    {
-      "cityName": "Almassora",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2023-10-10T23:09:53.721Z",
-      "notes": "testing",
-      "position": {
-        "lat": "39.97606773596748",
-        "lng": "-0.11535644531250001"
+        "lat": "75.6939314569882",
+        "lng": "-40.78125000000001"
       },
       "id": 98443204
-    },
-    {
-      "cityName": "Mont-Saint-Hilaire",
-      "country": "Canada",
-      "emoji": "🇨🇦",
-      "date": "2023-10-10T23:12:35.588Z",
-      "notes": "testing",
-      "position": {
-        "lat": "45.564785002956775",
-        "lng": "-73.20327758789064"
-      },
-      "id": 98443205
     }
   ]
 }

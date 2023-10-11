@@ -15,9 +15,9 @@ function reducer(state, action) {
     case "loading":
       return { ...state, isLoading: true };
     case "cities/loaded":
-      return { ...state, cities: action.paylaod, isLoading: false };
+      return { ...state, isLoading: false, cities: action.paylaod };
     case "city/loaded":
-      return { ...state, currentCity: action.payload, isLoading: false };
+      return { ...state, isLoading: false, currentCity: action.paylaod };
     case "city/created":
       return {
         ...state,
@@ -32,15 +32,13 @@ function reducer(state, action) {
       };
     case "rejected":
       return { ...state, isLoading: false, error: action.paylaod };
-    default:
-      throw new Error("Unknown action type");
   }
 }
 function CityProvider({ children }) {
   // const [cities, setCities] = useState([]);
   // const [isLoading, setIsLoading] = useState(false);
   // const [currentCity, setCurrentCity] = useState({});
-  const [{ cities, isLoading, currentCity, erro }, dispatch] = useReducer(
+  const [{ cities, isLoading, currentCity, error }, dispatch] = useReducer(
     reducer,
     initialState
   );
@@ -50,11 +48,12 @@ function CityProvider({ children }) {
       try {
         const res = await fetch(`${URL}/cities`);
         const data = await res.json();
+
         dispatch({ type: "cities/loaded", paylaod: data });
       } catch (err) {
         dispatch({
           type: "rejected",
-          paylaod: "There was error loading data...",
+          paylaod: "There was a error loading data...",
         });
       }
     }
@@ -65,11 +64,12 @@ function CityProvider({ children }) {
     try {
       const res = await fetch(`${URL}/cities/${id}`);
       const data = await res.json();
+      console.log(data);
       dispatch({ type: "city/loaded", paylaod: data });
     } catch (err) {
       dispatch({
         type: "rejected",
-        paylaod: "There was a problem loading city",
+        paylaod: "There was a error loading data...",
       });
     }
   }
@@ -90,14 +90,13 @@ function CityProvider({ children }) {
     } catch (err) {
       dispatch({
         type: "rejected",
-        paylaod: "There was a problem loading city",
+        paylaod: "There was a error loading data...",
       });
     }
   }
   async function deleteCity(id) {
     dispatch({ type: "loading" });
     try {
-      setIsLoading(true);
       await fetch(`${URL}/cities/${id}`, {
         method: "DELETE",
       });
@@ -107,7 +106,7 @@ function CityProvider({ children }) {
     } catch (err) {
       dispatch({
         type: "rejected",
-        paylaod: "There was a problem loading city",
+        paylaod: "There was a error loading data...",
       });
     }
   }
