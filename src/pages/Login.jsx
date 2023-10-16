@@ -2,7 +2,7 @@ import { useState } from "react";
 import PageNav from "../components/PageNav";
 import styles from "./Login.module.css";
 import Button from "../components/Button";
-import { useAuth } from "../contexts/AuthProvider";
+import { useAuth } from "../contexts/FakeAuthenticated";
 
 export default function Login() {
   // PRE-FILL FOR DEV PURPOSES
@@ -12,7 +12,7 @@ export default function Login() {
 
   function handSubmit(e) {
     e.preventDefault();
-    if (email && password) loging(email, password);
+    login(email, password);
   }
   return (
     <main className={styles.login}>
